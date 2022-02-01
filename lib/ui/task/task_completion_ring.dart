@@ -35,7 +35,7 @@ class RingPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final notCompleted = progress < 1.0;
-    final strokeWidth = size.width / 15.0;
+    final strokeWidth = size.width / 12.0;
     final center = Offset(size.width / 2, size.height / 2);
     final radius =
         notCompleted ? (size.width - strokeWidth) / 2 : size.width / 2;

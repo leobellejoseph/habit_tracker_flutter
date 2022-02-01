@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker_flutter/constants/constants.dart';
+import 'package:habit_tracker_flutter/models/task_preset.dart';
 import 'package:habit_tracker_flutter/ui/ui.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,11 +7,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.of(context).primary,
-      body: Center(
-        child: SizedBox(
-          width: 150,
-          child: AnimatedTask(iconName: AppAssets.dog),
-        ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        child: TasksGrid(tasks: TaskPreset.allPresets),
       ),
     );
   }

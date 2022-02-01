@@ -21,8 +21,9 @@ class _AnimatedTaskState extends State<AnimatedTask>
     controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     controller.reverseDuration = Duration(milliseconds: 500);
-    animationCurve =
-        controller.drive(CurveTween(curve: Curves.fastLinearToSlowEaseIn));
+    animationCurve = controller.drive(
+      CurveTween(curve: Curves.fastLinearToSlowEaseIn),
+    );
     controller.addStatusListener(_checkStatusUpdates);
   }
 
@@ -54,7 +55,7 @@ class _AnimatedTaskState extends State<AnimatedTask>
     }
   }
 
-  void _handleTapUp(TapUpDetails details) {
+  void _handleTapCancel() {
     if (controller.status != AnimationStatus.completed) {
       controller.reverse();
     }
@@ -66,7 +67,8 @@ class _AnimatedTaskState extends State<AnimatedTask>
     return GestureDetector(
       onDoubleTap: () => controller.reset(),
       onTapDown: _handleTapDown,
-      onTapUp: _handleTapUp,
+      onTapUp: (_) => _handleTapCancel(),
+      onTapCancel: _handleTapCancel,
       child: AnimatedBuilder(
         animation: animationCurve,
         builder: (context, _) {
